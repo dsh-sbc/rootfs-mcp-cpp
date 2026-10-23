@@ -1,5 +1,7 @@
 # rootfs-mcp — RootFS MCP Server
 
+[中文说明](README_CN.md)
+
 An MCP (Model Context Protocol) server over **Streamable HTTP** (MCP
 2025-03-26, single `/rootfs` endpoint, POST/GET/DELETE) that exposes Linux
 filesystem tools, controlled command execution, and system information to
@@ -43,6 +45,12 @@ cmake --build build -j
 # cross riscv64 (Xuantie C908 toolchain, tests forced OFF)
 cmake -S . -B build-riscv64 -DCMAKE_TOOLCHAIN_FILE=cmake/toolchain-riscv64.cmake -DCMAKE_BUILD_TYPE=Release
 cmake --build build-riscv64 -j
+
+# deploy to target board via scp (builds first, then copies the ELF and
+# default config; override with -DSCP_HOST/-DSCP_PORT/-DSCP_USER/-DSCP_PATH)
+cmake --build build-riscv64 --target cp
+# or: (cd build-riscv64 && make cp)
+# defaults: root@192.168.0.113:/root, port 2222
 ```
 
 ## Run
@@ -76,7 +84,7 @@ channel. SIGINT/SIGTERM stop the server gracefully.
   operation, target, result).
 
 See `docs/architecture.md`, `docs/configuration.md`,
-`docs/rootfs-client-example.md` and `docs/verification.md`.
+`docs/mcp-client-example.md` and `docs/verification.md`.
 
 ## Install
 
