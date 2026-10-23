@@ -1,0 +1,28 @@
+{
+  "mode": "readonly",
+  "listen": { "host": "127.0.0.1", "port": 9898 },
+  "server": { "name": "rootfs-mcp", "version": "1.0.0" },
+
+  "allow_read": ["/"],
+  "allow_write": [],
+  "deny": [
+    "/proc/kcore",
+    "/dev/mem",
+    "/etc/shadow",
+    "/etc/gshadow",
+    "/etc/shadow-",
+    "/root/.ssh"
+  ],
+  "allow_exec": [],
+  "allow_shell_script": false,
+  "enable_delete": false,
+
+  "max_read_bytes": 1048576,
+  "max_write_bytes": 1048576,
+  "exec_timeout_ms": 30000,
+  "max_output_bytes": 1048576,
+  "max_concurrent_exec": 4,
+
+  "audit": true,
+  "audit_file": ""
+}

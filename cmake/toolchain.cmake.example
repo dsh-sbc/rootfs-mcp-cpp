@@ -1,0 +1,19 @@
+# Template toolchain file. Copy and adapt for your SDK, then configure with:
+#   cmake -S . -B build-<arch> -DCMAKE_TOOLCHAIN_FILE=cmake/<your-file>.cmake
+#
+# See toolchain-riscv64.cmake for a concrete riscv64 (Xuantie C908) example.
+set(CMAKE_SYSTEM_NAME Linux)
+set(CMAKE_SYSTEM_PROCESSOR <arch>)             # e.g. riscv64, aarch64
+
+set(TOOLCHAIN_PATH "/path/to/sdk/host")
+set(CMAKE_SYSROOT "${TOOLCHAIN_PATH}/<triplet>/sysroot")
+set(CMAKE_C_COMPILER   "${TOOLCHAIN_PATH}/bin/<triplet>-gcc")
+set(CMAKE_CXX_COMPILER "${TOOLCHAIN_PATH}/bin/<triplet>-g++")
+
+set(CMAKE_C_FLAGS   "-O2 -D_DEFAULT_SOURCE")
+set(CMAKE_CXX_FLAGS "-O2 -D_DEFAULT_SOURCE -std=c++17")
+
+set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
+set(CMAKE_FIND_ROOT_PATH_MODE_PACKAGE ONLY)
+set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
+set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
